@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+</head>
+<body>
+  <div class="container">
+    <form class="form" action="#" novalidate>
+      <h1>Register</h1>
+
+      <div class="control">
+        <label for="email">
+          Email
+          <span aria-label="required">*</span>
+        </label>
+        <input type="email" id="email" name="email" placeholder="joe@gmail.com" autocomplete="off" required>
+        <span class="error-msg" aria-live="polite"></span>
+      </div>
+
+      <div class="control">
+        <label for="country">
+          Country
+          <span aria-label="required">*</span>
+        </label>
+        <input type="text" id="country" name="country" pattern="\w{2,}" placeholder="Korea" minlength="2" autocomplete="off" required >
+        <span class="error-msg" aria-live="polite"></span>
+      </div>
+
+      <div class="control">
+        <label for="z-code">
+          Zip Code
+          <span aria-label="required">*</span>
+        </label>
+        <input type="number" id="z-code" name="z-code" placeholder="46000" min="10000" max="99999" autocomplete="off" required>
+        <span class="error-msg" aria-live="polite"></span>
+      </div>
+
+      <div class="control">
+        <label for="password">
+          Password
+          <span aria-label="required">*</span>
+        </label>
+        <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        <span class="error-msg" aria-live="polite"></span>
+      </div>
+
+      <div class="control">
+        <label for="password-confirm">
+          Password Confirmation
+          <span aria-label="required">*</span>
+        </label>
+        <input type="password" id="password-confirm" name="password-confirm" required>
+        <span class="error-msg" aria-live="polite"></span>
+      </div>
+
+      <button class="register-btn">Register</button>
+    </form>
+  </div>
+</body>
+</html>
