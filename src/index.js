@@ -7,12 +7,12 @@ const formController = (() => {
   const password = document.querySelector("#password");
   const passwordConfirm = document.querySelector("#password-confirm");
 
-  const showErrorBorder = (elem) => {
+  const showErrorBorder = elem => {
     elem.classList.remove("correct-border");
     elem.classList.add("error-border");
   };
 
-  const showCorrectBorder = (elem) => {
+  const showCorrectBorder = elem => {
     elem.classList.remove("error-border");
     elem.classList.add("correct-border");
   };
@@ -37,17 +37,16 @@ const formController = (() => {
 
   const handleCountryValidity = () => {
     const errorMsgSpan = country.nextElementSibling;
-    const spaces = /\s/g;
 
     if (country.validity.valueMissing) {
       errorMsgSpan.innerText = "Please fill out this field";
 
       showErrorBorder(country);
-    } else if (country.value.match(spaces)) {
-      errorMsgSpan.innerText = "No spaces allowed";
+    } else if (country.value.startsWith(" ")) {
+      errorMsgSpan.innerText = "Can't start with space(s)";
 
       showErrorBorder(country);
-    } else if (country.value.length < 2) {
+    } else if (country.value.trim().length < 2) {
       errorMsgSpan.innerText = "Country must be 2 characters long";
 
       showErrorBorder(country);
@@ -156,7 +155,7 @@ const setupEventListeners = () => {
   const password = document.querySelector("#password");
   const passwordConfirm = document.querySelector("#password-confirm");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", e => {
     e.preventDefault();
 
     formController.handleEmailValidity();
@@ -167,7 +166,7 @@ const setupEventListeners = () => {
 
     const allValid = [email, country, zipCode, password, passwordConfirm].every(
       // eslint-disable-next-line no-shadow
-      (e) => e.checkValidity()
+      e => e.checkValidity()
     );
 
     // eslint-disable-next-line no-unused-expressions, no-alert
